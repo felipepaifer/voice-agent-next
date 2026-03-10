@@ -104,6 +104,27 @@ export function AgentSettingsForm({ settings, onChange }: AgentSettingsFormProps
         </div>
         
       </div>
+      <div>
+        <label className="font-semibold">Voice</label>
+        <div className="mt-2">
+        <AWTextInput
+          value={draft.persona.voice}
+          onChange={(event) =>
+            updateDraft(
+              new AgentSettings({
+                systemPrompt: draft.systemPrompt,
+                persona: {
+                  ...draft.persona,
+                  voice: event.target.value,
+                },
+                tools: draft.tools,
+                notifications: draft.notifications,
+              })
+            )
+          }
+        />
+        </div>
+      </div>
 
       <div>
         <label className="font-semibold">Tools</label>

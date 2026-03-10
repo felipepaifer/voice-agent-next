@@ -229,7 +229,7 @@ export function AgentCallPanel() {
         )
         resetSpeakingState()
       })
-      room.on(RoomEvent.Disconnected, (reason) => {
+      room.on(RoomEvent.Disconnected, () => {
         resetSpeakingState()
         setIsConnected(false)
       })

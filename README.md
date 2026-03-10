@@ -19,6 +19,11 @@ Frontend repository for configuring and testing the voice agent experience.
 
 UI runs at `http://localhost:3000`.
 
+## Local Auth Note
+
+This project is intentionally local-first and single-user for the take-home.  
+`NEXT_PUBLIC_ADMIN_API_KEY` is sent from the browser as a convenience gate for local development only. It is **not** production-grade authentication.
+
 ## What This UI Does
 
 - Start/stop voice sessions with the backend agent

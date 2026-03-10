@@ -3,7 +3,7 @@
 import { AgentCallPanel } from "@/composedComponents/AgentCallPanel"
 import { AgentSettingsHandler } from "@/handlers/AgentSettingsHandler"
 import { useAgentSettings } from "@/contexts/agentSettings/AgentSettingsContext"
-import { useEffect, useMemo } from "react"
+import { useCallback, useEffect, useMemo } from "react"
 
 export function AdminDashboard() {
   // Contexts
@@ -13,15 +13,15 @@ export function AdminDashboard() {
   const handler = useMemo(() => new AgentSettingsHandler(), [])
 
   // Methods
-  const loadSettings = async () => {
+  const loadSettings = useCallback(async () => {
     const settings = await handler.getAgentSettings()
     setAgentSettings(settings)
-  }
+  }, [handler, setAgentSettings])
 
   // Watchers
   useEffect(() => {
     void loadSettings()
-  }, [handler, setAgentSettings])
+  }, [loadSettings])
 
   return (
     <div className="w-full min-h-screen px-1 py-1 sm:px-2 sm:py-2">
