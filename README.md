@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aloware Admin UI (Next.js)
 
-## Getting Started
+Frontend repository for configuring and testing the voice agent experience.
 
-First, run the development server:
+## Setup (Under 5 Minutes)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Create env file:
+   ```bash
+   cp .env.example .env
+   ```
+2. Fill backend URL and admin API key:
+   - `NEXT_PUBLIC_BACKEND_API_BASE_URL`
+   - `NEXT_PUBLIC_ADMIN_API_KEY`
+3. Run:
+   ```bash
+   npm install
+   npm run dev
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+UI runs at `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What This UI Does
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Start/stop voice sessions with the backend agent
+- Edit agent instructions/system prompt
+- Edit persona (name, greeting)
+- Manage available tools
+- Connect/disconnect Google Calendar for the current local user
 
-## Learn More
+## Tool Management Behavior
 
-To learn more about Next.js, take a look at the following resources:
+The UI supports grouped tool orchestration:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `Schedule Viewing` is the parent tool
+- Scheduling sub-tools are shown only when enabled:
+  - `Check Availability`
+  - `Create Google Calendar Event`
+  - `Send SMS Confirmation`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+When `Schedule Viewing` is turned off, sub-tools are automatically disabled.
 
-## Deploy on Vercel
+## Voice UX Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Reactive speaking orb based on remote active speaker events
+- Start/end call sound cues
+- Session-safe unique room/identity generation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+
+- This repo is intentionally single-user and local-first for the engineering test.
+- Backend repository contains the Python LiveKit agent and service logic.
